@@ -1,9 +1,9 @@
 #include <Arduino.h>
 
-int lastlightValueSensor1 = 700;
-int lastlightValueSensor2 = 700;
-int lastlightValueSensor3 = 700;
-int threshold = 800;   // what is the threshold for light?
+int lastlightValueSensor1 = 800;
+int lastlightValueSensor2 = 800;
+int lastlightValueSensor3 = 800;
+int threshold = 810;   // what is the threshold for light?
 
 void setup() {
   Serial.begin(9600);
