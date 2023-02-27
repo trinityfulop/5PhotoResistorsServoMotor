@@ -1,15 +1,12 @@
 #include <Arduino.h>
 
-int lastlightValueSensor1 = 800;
-int lastlightValueSensor2 = 800;
-int lastlightValueSensor3 = 800;
-int threshold = 810;   // what is the threshold for light?
-
 void setup() {
   Serial.begin(9600);
   pinMode (A0, INPUT);
   pinMode (A1, INPUT);
   pinMode (A2, INPUT);
+  pinMode (A3, INPUT);
+  pinMode (A4, INPUT);
 }
 
 void loop() {
@@ -17,10 +14,17 @@ void loop() {
   int lightValueSensor1 = analogRead(A0);
   int lightValueSensor2 = analogRead(A1);
   int lightValueSensor3 = analogRead(A2);
+  int lightValueSensor4 = analogRead(A3);
+  int lightValueSensor5 = analogRead(A4);
   
   Serial.print(lightValueSensor1);
   Serial.print(",");
-  Serial.print(lightValueSensor2);
+  Serial.print(lightValueSensor2); 
   Serial.print(",");
-  Serial.println(lightValueSensor3);
+  Serial.print(lightValueSensor3);
+  Serial.print(",");
+  Serial.print(lightValueSensor4);
+  Serial.print(",");
+  Serial.println(lightValueSensor5);
+  delay (3000);
 }
