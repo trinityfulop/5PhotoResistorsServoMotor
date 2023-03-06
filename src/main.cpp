@@ -1,13 +1,25 @@
 #include <Arduino.h>
+#include <Servo.h>
+Servo Serv1;
+
+int pos = 0;
+int lastlightValue1 = 0;
+int lastlightValue2 = 0;
+int lastlightValue3 = 0;
+int lastlightValue4 = 0;
+int lastlightValue5 = 300; //I feel like this should be above the threshold?
+int threshold = 250; 
 
 void setup() {
   Serial.begin(9600);
+
   pinMode (A0, INPUT);
   pinMode (A1, INPUT);
   pinMode (A2, INPUT);
   pinMode (A3, INPUT);
   pinMode (A4, INPUT);
-}
+  Serv1.attach(9);
+  }
 
 void loop() {
 
@@ -28,13 +40,17 @@ void loop() {
   Serial.print(",");
   Serial.println(lightValueSensor5);
 
-// Finding the lowest light value, telling me the sensor.
 int minVal = 999;
-int minSensor;
+int minSensor = 0;
+int currentLowest;
+int prevLowest;
 
-if (lightValueSensor1 < minVal) {
+// Finding the lowest light value, telling me the senso
+
+ if (lightValueSensor1 < minVal) {
   minVal = lightValueSensor1;
   minSensor = 1;
+
 }
 if (lightValueSensor2 < minVal) {
   minVal = lightValueSensor2;
@@ -53,4 +69,14 @@ if (lightValueSensor5 < minVal) {
   minSensor = 5;
 }
 
+//find current & prev lowest. 
+// curent previous is based off of the minimum sensor value?
+minSensor = currentLowest;
+
+if (currentLowest != prevLowest) {
+   Serial.println(minSensor);
 }
+prevLowest = currentLowest;
+
+}
+
