@@ -7,8 +7,13 @@ int lastlightValue1 = 0;
 int lastlightValue2 = 0;
 int lastlightValue3 = 0;
 int lastlightValue4 = 0;
-int lastlightValue5 = 300; //I feel like this should be above the threshold?
+int lastlightValue5 = 0; //I feel like this should be above the threshold?
 int threshold = 250; 
+
+int minVal = 999;
+int minSensor = 0;
+int currentLowest;
+int prevLowest = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -30,20 +35,7 @@ void loop() {
   int lightValueSensor4 = analogRead(A3);
   int lightValueSensor5 = analogRead(A4);
   
-  Serial.print(lightValueSensor1);
-  Serial.print(",");
-  Serial.print(lightValueSensor2); 
-  Serial.print(",");
-  Serial.print(lightValueSensor3);
-  Serial.print(",");
-  Serial.print(lightValueSensor4);
-  Serial.print(",");
-  Serial.println(lightValueSensor5);
 
-int minVal = 999;
-int minSensor = 0;
-int currentLowest;
-int prevLowest;
 
 // Finding the lowest light value, telling me the senso
 
@@ -70,11 +62,23 @@ if (lightValueSensor5 < minVal) {
 }
 
 //find current & prev lowest. 
-// curent previous is based off of the minimum sensor value?
-minSensor = currentLowest;
+// min sensor value from prev = currentLowest?
+currentLowest = minSensor;
 
 if (currentLowest != prevLowest) {
-   Serial.println(minSensor);
+   Serial.print(minSensor); // this is just repeating when it's not supposed to?
+   Serial.print(" / ");
+   Serial.println(prevLowest);  
+  Serial.print(lightValueSensor1);
+  Serial.print(",");
+  Serial.print(lightValueSensor2); 
+  Serial.print(",");
+  Serial.print(lightValueSensor3);
+  Serial.print(",");
+  Serial.print(lightValueSensor4);
+  Serial.print(",");
+  Serial.println(lightValueSensor5);
+
 }
 prevLowest = currentLowest;
 
