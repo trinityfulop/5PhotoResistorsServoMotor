@@ -16,7 +16,6 @@ int minSensor = 0;
 int currentLowestLight;
 int prevLowestLight = 0;
 
-int ServDegrees [5] = {20, 60, 90, 120, 160};
 
 void setup() {
   Serial.begin(9600);
@@ -62,8 +61,6 @@ if (lightValueSensor4 < minVal) {
   minSensor = 4;
 }
 
-//find current & prev lowest. 
-// min sensor value from prev = currentLowest?
 currentLowestLight = minSensor;
 
 if (currentLowestLight != prevLowestLight) {
@@ -79,30 +76,30 @@ if (currentLowestLight != prevLowestLight) {
   Serial.print(lightValueSensor3);
   Serial.print(",");
   Serial.println(lightValueSensor4);
-
 }
 prevLowestLight = currentLowestLight;
 
 //Servo
-// move the servo to a new position, previously arranged #s.
 
-int currentServPos = ServDegrees[minSensor]; //array?
+//array:
+// int currentServPos = ServDegrees[minSensor]; 
+//array?
+// int ServDegrees[5] = {90, 120, 20, 60, 160};
+// Serv1.write([ServDegrees[0])
 
-// here I am trying to assign each minSensor a degree to go to.
-if (minSensor = 0) {
-  Serv1.write(ServDegrees[3]);
+if (minSensor == 0) {
+  Serv1.write(90);
 }
-if (minSensor = 1){
-  Serv1.write(ServDegrees[4]);
+if (minSensor == 1){
+  Serv1.write(120);
 }
-if (minSensor = 2){
-  Serv1.write(ServDegrees[0]);
+if (minSensor == 2){
+  Serv1.write(20);
 }
-if (minSensor = 3){
-  Serv1.write(ServDegrees[1]);
+if (minSensor == 3){
+  Serv1.write(60);
 }
-if (minSensor = 4){
-  Serv1.write(ServDegrees[2]);
+if (minSensor == 4){
+  Serv1.write(160);
 }
 }
-
